@@ -1,0 +1,2 @@
+config.js filter=git-crypt diff=git-crypt
+serverless/secrets.json filter=git-crypt diff=git-crypt
