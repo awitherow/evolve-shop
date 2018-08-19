@@ -1,13 +1,27 @@
-import "./index.css";
+import React, { Component } from "react";
 
-import Header from "../components/Header";
+import config from "../config";
+
 import ProductList from "../components/ProductList";
 
-export default () => (
-  <div className="App">
-    <Header />
-    <div className="container">
-      <ProductList />
-    </div>
-  </div>
-);
+export default class App extends Component {
+  componentDidMount() {
+    this.handler = window.StripeCheckout.configure({
+      key: config.stripe.apiKey,
+      token: function(token) {
+        self.onToken(token);
+      }
+    });
+  }
+
+  render() {
+    return (
+      <div className="App">
+        <nav>Header</nav>
+        <div className="container">
+          <ProductList />
+        </div>
+      </div>
+    );
+  }
+}
